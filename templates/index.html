@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <body style="background-color:powderblue;">
+
+        <div class="container">
+            <h1 style="color:blue;font-size:50px" align="center"><b>Data Driven Material Discovery</b></h1>
+            <h2 style="color:red;font-size:35px" align="center"><b>Biofilms Search Engine</b></h2>
+            <img STYLE="position:absolute; top:15px; left:525px; width:200px; height:200px" src="{{ sd_logo }}">
+            <img STYLE="position:absolute; top:15px; right:525px; width:200px; height:200px" src="{{ uno_logo }}">
+            <br><br><br><br><br><br><br>
+            <form method="POST" enctype="multipart/form-data">
+	            <label for="myfile" style="font-size:20px">Select an image:</label>
+			    <b><input type="file" id="myfile" name="query_img" style="font-size:20px"></b><br><br>
+			    <b><input type="submit" style="font-size:20px;color:blue"></b>
+            </form>
+            <h2>Query:</h2>
+            {% if query_path %}
+            <img src="{{ query_path }}" width="200px">
+            {% endif %}
+            <h2>Results:</h2>
+            {% for score in scores %}
+            <figure style="float: left; margin-right: 20px; margin-bottom: 20px;">
+                <img src="{{ score[1] }}" height="200px">
+                <figcaption>{{ score[2] }}</figcaption>
+                <figcaption>{{ score[0] }}</figcaption>
+            </figure>
+            {% endfor %}
+        </div>
+    </body>
+</html>
+
+
